@@ -1,3 +1,8 @@
+import { products } from '../data/products.js';
+import { cart } from '../data/cart.js';
+
+// import { cart as myCart } from '../data/cart.js'; To avoid naming conflict when variable of same is used
+
 let productsHTML = '';
 
 products.forEach((product) => {
