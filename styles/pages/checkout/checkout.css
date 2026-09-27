@@ -53,6 +53,26 @@
   margin-bottom: 12px;
 }
 
+.cart-item-container .new-quantity-input,
+.cart-item-container .save-quantity-link {
+  display: none;
+}
+
+.cart-item-container .new-quantity-input {
+  width: 50px;
+  font-size: 16px;
+}
+
+.cart-item-container.is-updating-quantity .quantity-label,
+.cart-item-container.is-updating-quantity .update-quantity-link{
+  display: none;
+}
+
+.cart-item-container.is-updating-quantity .new-quantity-input,
+.cart-item-container.is-updating-quantity .save-quantity-link {
+  display: inline-block;
+}
+
 .payment-summary {
   padding-bottom: 5px;
 }

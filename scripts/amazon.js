@@ -1,5 +1,5 @@
 import { products } from '../data/products.js';
-import { cart, addToCart } from '../data/cart.js';
+import { addToCart, calculateCartQuantity } from '../data/cart.js';
 import { formatCurrency } from './utils/money.js';
 
 // import { cart as myCart } from '../data/cart.js'; To avoid naming conflict when variable of same is used
@@ -8,6 +8,8 @@ import { formatCurrency } from './utils/money.js';
 cartModule.cart
 cartModule.addToCart('id')
 */
+
+document.querySelector('.js-cart-quantity').innerText = calculateCartQuantity();
 
 let productsHTML = '';
 
@@ -36,7 +38,7 @@ products.forEach((product) => {
       </div>
 
       <div class="product-quantity-container">
-        <select>
+        <select name="item-quantity" class="js-quantity-selector-${product.id}">
           <option selected value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -52,7 +54,7 @@ products.forEach((product) => {
 
       <div class="product-spacer"></div>
 
-      <div class="added-to-cart">
+      <div class="added-to-cart js-added-${product.id}">
         <img src="images/icons/checkmark.png">
         Added
       </div>
@@ -66,20 +68,17 @@ products.forEach((product) => {
 
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
-function updateCartQuantity() {
-  let cartQuantity = 0;
-
-    cart.forEach((cartItem) => {
-      cartQuantity += cartItem.quantity;
-    });
-
-    document.querySelector('.js-cart-quantity').innerText = cartQuantity;
-}
-
 document.querySelectorAll('.js-add-to-cart').forEach((btn) => {
   btn.addEventListener('click', () => {
     const productId = btn.dataset.productId;
-    addToCart(productId);
-    updateCartQuantity();
+    const quantity = (document.querySelector(`.js-quantity-selector-${productId}`)).value;
+    const addedMsg = document.querySelector(`.js-added-${productId}`);
+    clearTimeout(addedMsg.timeoutId);
+    addedMsg.classList.add('is-visible');
+    addedMsg.timeoutId = setTimeout(() => {
+      addedMsg.classList.remove('is-visible');
+    }, 2000);
+    addToCart(productId, Number(quantity));
+    document.querySelector('.js-cart-quantity').innerText = calculateCartQuantity();
   });
 });
