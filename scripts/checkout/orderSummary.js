@@ -6,7 +6,7 @@ import { renderPaymentSummary  } from './paymentSummary.js';
 
 export function renderOrderSummary() {
 
-  // document.querySelector('.js-return-to-home-link').innerText = `${calculateCartQuantity()} items`;
+  document.querySelector('.js-return-to-home-link').innerText = `${calculateCartQuantity()} items`;
 
   let cartSummaryHTML = '';
 

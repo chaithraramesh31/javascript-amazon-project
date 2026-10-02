@@ -12,4 +12,12 @@ describe('Testsuite: formatCurrency', () => {
   it('rounds up to the nearest cents', () => {
     expect(formatCurrency(2000.5)).toEqual('20.01');
   });
+
+  it('rounds up to the nearest cents', () => {
+    expect(formatCurrency(2000.4)).toEqual('20.00');
+  });
+
+  it('rounds up to the nearest cents', () => {
+    expect(formatCurrency(-2000.4)).toEqual('-20.00');
+  });
 });
