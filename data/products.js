@@ -56,6 +56,42 @@ class Clothing extends Product {
   }
 }
 
+/* Built-in Class: Date
+const date = new Date();
+console.log(date);
+console.log(date.toLocaleTimeString());
+*/
+
+/*
+console.log(this);
+const obj2 = {
+  a: 2,
+  b: this.a
+};
+*/
+/*
+function logThis() {
+  console.log(this);
+}
+logThis();
+logThis.call('hello'); // Inside a function we can change this to whatever we want using call method.
+*/
+
+/*//Arrow functions do not change this
+this
+const obj3 = {
+  method: () => {
+    console.log(this);
+  }
+}
+
+obj3.method();
+*/
+
+// 1.Inside a method, this refers to the object that owns the method.
+// 2.Inside a function, this will be undefined in strict mode, or the global object in non-strict mode. But we change this using call method.
+// 3.Arrow functions do not have their own this. They inherit this from the parent scope. Do not change the value of this.
+
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
