@@ -1,6 +1,5 @@
 import { products } from '../data/products.js';
 import { addToCart, calculateCartQuantity } from '../data/cart.js';
-import { formatCurrency } from './utils/money.js';
 
 // import { cart as myCart } from '../data/cart.js'; To avoid naming conflict when variable of same is used
 
@@ -27,14 +26,14 @@ products.forEach((product) => {
 
       <div class="product-rating-container">
         <img class="product-rating-stars"
-          src="images/ratings/rating-${product.rating.stars * 10}.png">
+          src="${product.getStarsUrl()}">
         <div class="product-rating-count link-primary">
           ${product.rating.count}
         </div>
       </div>
 
       <div class="product-price">
-        $${formatCurrency(product.priceCents)}
+        ${product.getPrice()}
       </div>
 
       <div class="product-quantity-container">
