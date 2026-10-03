@@ -134,8 +134,6 @@ export function fetchProducts(fun) {
   xhr.send();
 }
 
-fetchProducts();
-
 /*
 export const products = [
   {
