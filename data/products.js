@@ -127,6 +127,8 @@ export function loadProductsFetch() {
       return new Product(productDetails);
     });
     console.log('Products loaded');
+  }).catch(() => {
+    console.log('Unexpected error. Please try again later');
   });
 
   return promise;
@@ -151,6 +153,11 @@ export function fetchProducts(fun) {
     });
     console.log('Products loaded');
     fun();
+  });
+
+  xhr.addEventListener('error', (error) => {
+    console.log(error);
+    console.log('Unexpected error. Please try again later');
   });
 
   xhr.open('GET', 'https://supersimplebackend.dev/products');

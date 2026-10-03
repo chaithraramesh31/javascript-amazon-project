@@ -5,18 +5,26 @@ import { fetchProducts, loadProductsFetch } from '../data/products.js';
 import { fetchCart } from '../data/cart.js';
 
 async function loadPage() {
-  await loadProductsFetch();
+  try {
+    // throw 'error1';
 
-  const value = await new Promise((resolve) => {
-    fetchCart(() => {
-      resolve('value2');
+    await loadProductsFetch();
+
+    const value = await new Promise((resolve, reject) => {
+      // throw 'error2'; first way of creating manual error in promise
+      fetchCart(() => {
+        // reject('error3'); second way of creating manual error in promise
+        resolve('value2');
+      });
     });
-  });
+  } catch (error) {
+    console.log(error);
+  }
 
   renderOrderSummary();
   renderPaymentSummary();
 
-  return value;
+  return;
 }
 
 loadPage();
